@@ -36,7 +36,7 @@ app.post('/echo', (req, res) => {
     if (options.flag) {
         out.flag = '123';
     } else {
-        out.flag = 'disabled';
+        out.flag = '123';
     }
 
     res.json(out);
