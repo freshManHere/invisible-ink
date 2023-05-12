@@ -5,6 +5,8 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const _ = require('lodash');
+const cookieParser = require('cookie-parser');
+const csrf = require('csurf');
 
 const options = {};
 const flag = fs.readFileSync('./flag', 'utf-8').trim();
@@ -12,6 +14,11 @@ const docHtml = fs.readFileSync('./src/index.html', 'utf-8');
 
 app.use(bodyParser.json());
 app.use(helmet());
+app.use(cookieParser());
+
+app.use(morgan('dev'));
+require('./routes/currency.route.js')(app);
+app.use(csrf({ cookie: true }));
 
 app.get('/', (req, res) => {
     res.send(docHtml);
