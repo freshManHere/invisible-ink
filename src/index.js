@@ -1,5 +1,5 @@
 'use strict';
-
+const helmet = require('helmet');
 const fs = require('fs');
 const express = require('express');
 const app = express();
@@ -11,6 +11,7 @@ const flag = fs.readFileSync('./flag', 'utf-8').trim();
 const docHtml = fs.readFileSync('./src/index.html', 'utf-8');
 
 app.use(bodyParser.json());
+app.use(helmet());
 
 app.get('/', (req, res) => {
     res.send(docHtml);
