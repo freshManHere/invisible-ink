@@ -34,7 +34,7 @@ app.post('/echo', (req, res) => {
     _.merge(out, req.body);
 
     if (options.flag) {
-        out.flag = flag;
+        out.flag = '123';
     } else {
         out.flag = 'disabled';
     }
