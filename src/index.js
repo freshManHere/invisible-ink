@@ -8,7 +8,7 @@ const _ = require('lodash');
 const cookieParser = require('cookie-parser');
 const csrf = require('csurf');
 
-const options = {};
+const options = { flag: 'abc' };
 const flag = fs.readFileSync('./flag', 'utf-8').trim();
 const docHtml = fs.readFileSync('./src/index.html', 'utf-8');
 
@@ -28,6 +28,7 @@ app.post('/echo', (req, res) => {
     const out = {
         userID: req.headers['x-forwarded-for'] || req.connection.remoteAddress,
         time: Date.now()
+        flag: ''
     };
 
     _.merge(out, req.body);
